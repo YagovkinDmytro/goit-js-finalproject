@@ -33,13 +33,9 @@ function handlerPictureClick(evt) {
   if (evt.target === evt.currentTarget) {
     return;
   }
-  const currentPictureLink = getLink(evt.target);
-  showPictureModal(currentPictureLink);
-}
+  const value = evt.target.dataset.source;
 
-function getLink(target) {
-  const value = target.dataset.source;
-  return value;
+  showPictureModal(value);
 }
 
 function showPictureModal(link) {
