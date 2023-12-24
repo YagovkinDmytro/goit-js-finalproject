@@ -39,5 +39,24 @@ function handlerPictureClick(evt) {
 }
 
 function showPictureModal(link) {
-  basicLightbox.create(`<img src="${link}" width="800" height="600">`).show();
+  const instance = basicLightbox.create(
+    `<img src="${link}" width="800" height="600">`,
+    {
+      handler: null,
+      onShow(instance) {
+        this.handler = onEscape.bind(instance);
+        document.addEventListener("keydown", this.handler);
+      },
+      onClose() {
+        document.removeEventListener("keydown", this.handler);
+      },
+    }
+  );
+  instance.show();
+}
+
+function onEscape({ code }) {
+  if (code === "Escape") {
+    this.close();
+  }
 }
