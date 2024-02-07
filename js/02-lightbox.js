@@ -1,9 +1,13 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
-console.log(galleryItems);
 
 const gallery = document.querySelector(".gallery");
-console.log(gallery);
+
+gallery.insertAdjacentHTML("afterbegin", galleryPictures(galleryItems));
+
+const galleryModal = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 
 function galleryPictures(arr) {
   return arr
@@ -22,20 +26,3 @@ function galleryPictures(arr) {
     )
     .join("");
 }
-
-gallery.insertAdjacentHTML("afterbegin", galleryPictures(galleryItems));
-
-gallery.addEventListener("click", handlerPictureClick);
-
-function handlerPictureClick(evt) {
-  evt.preventDefault();
-  if (evt.target === evt.currentTarget) {
-    return;
-  }
-  galleryModal;
-}
-
-const galleryModal = new SimpleLightbox(".gallery a", {
-  captionsData: "alt",
-  captionDelay: 250,
-});
